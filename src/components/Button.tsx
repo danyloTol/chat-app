@@ -1,12 +1,13 @@
 type ButtonProps = {
     text: string;
     color?: string;
-    btnType?: "default" | "outline";
+    type?: "default" | "outline";
 }
 
-function Button({text, color, btnType}: ButtonProps) {
+function Button({text, color = "#000000", type = "default"}: ButtonProps) {
     return (
-        <button>
+        <button 
+            className={(type === "default") ? `bg-${color}` : `outline-2 outline-${color}`}>
             {text}
         </button>
     )
