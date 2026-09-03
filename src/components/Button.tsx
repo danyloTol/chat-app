@@ -13,7 +13,7 @@ function Button({text, color = "#FFFFFF", type = "default", padX = 0, padY = 0, 
 
     return (
         <button 
-            className={`rounded-full px-[${padX}] py-[${padY}] ${isDefault ? "text-black" : "bg-transparent trxt-black"}`}
+            className={`rounded-full px-[${padX}] py-[${padY}] cursor-pointer ${isDefault ? "text-white" : "bg-transparent trxt-black"}`}
             style={{
                 backgroundColor: isDefault ? color : undefined,
                 outline: !isDefault ? `2px solid ${color}`: undefined,
