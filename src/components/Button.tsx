@@ -2,12 +2,25 @@ type ButtonProps = {
     text: string;
     color?: string;
     type?: "default" | "outline";
+    padX?: number;
+    padY?: number;
+    width?: number;
+    fontSize?: number;
 }
 
-function Button({text, color = "#000000", type = "default"}: ButtonProps) {
+function Button({text, color = "#FFFFFF", type = "default", padX = 0, padY = 0, width, fontSize = 16}: ButtonProps) {
+    const isDefault = type === "default";
+
     return (
         <button 
-            className={(type === "default") ? `bg-${color}` : `outline-2 outline-${color}`}>
+            className={`rounded-full px-[${padX}] py-[${padY}] ${isDefault ? "text-black" : "bg-transparent trxt-black"}`}
+            style={{
+                backgroundColor: isDefault ? color : undefined,
+                outline: !isDefault ? `2px solid ${color}`: undefined,
+                padding: `${padY}px ${padX}px`, 
+                width: width,
+                fontSize: fontSize,
+            }}>
             {text}
         </button>
     )
