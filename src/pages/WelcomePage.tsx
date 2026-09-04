@@ -9,8 +9,8 @@ function WelcomePage() {
             <p className='text-xl mb-70 fade-in-element-2s'>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
             <p className='text-xl my-5 fade-in-element-2s'>Do you wanna join us?</p>
             <div className='flex flex-row gap-10 fade-in-element-3s'>
-                <Button text='Get Started' type='default' color='#000000' padY={10} width={BUTTON_WIDTH} fontSize={24}/>
-                <Button text='Log In' type='outline' color='#000000' padY={10} width={BUTTON_WIDTH} fontSize={24}/>
+                <Button text='Get Started' type='default' bgColor='#09b036' txtColor='#FFFFFF' hoverColor='#078c2b' padY={10} width={BUTTON_WIDTH} fontSize={24}/>
+                <Button text='Log In' type='outline' bgColor='#09b036' hoverColor='#078c2b' padY={10} width={BUTTON_WIDTH} fontSize={24}/>
             </div>
         </div>
     )
