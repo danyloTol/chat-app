@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 type ButtonProps = {
     text: string;
     bgColor?: string;
@@ -10,6 +11,7 @@ type ButtonProps = {
     width?: number;
     fontSize?: number;
     hoverColor?: string;
+    onClick?: () => void;
 }
 
 function Button({text, bgColor = "#FFFFFF", txtColor = "#000000", type = "default", padX = 0, padY = 0, width, fontSize = 16, hoverColor = bgColor}: ButtonProps) {
