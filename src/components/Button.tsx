@@ -14,7 +14,7 @@ type ButtonProps = {
     onClick?: () => void;
 }
 
-function Button({text, bgColor = "#FFFFFF", txtColor = "#000000", type = "default", padX = 0, padY = 0, width, fontSize = 16, hoverColor = bgColor}: ButtonProps) {
+function Button({text, bgColor = "#FFFFFF", txtColor = "#000000", type = "default", padX = 0, padY = 0, width, fontSize = 16, hoverColor = bgColor, onClick}: ButtonProps) {
     const isDefault = type === "default";
     const [isHovered, setIsHovered] = useState(false);
 
@@ -30,7 +30,8 @@ function Button({text, bgColor = "#FFFFFF", txtColor = "#000000", type = "defaul
                 width: width,
                 fontSize: fontSize,
                 color: isDefault ? txtColor : isHovered ? hoverColor : bgColor,
-            }}>
+            }}
+            onClick={onClick}>
             {text}
         </button>
     )
