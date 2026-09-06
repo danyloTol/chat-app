@@ -1,10 +1,11 @@
 import WelcomePage from './pages/WelcomePage';
+import LoginPage from './pages/LoginPage'
 
 function App() {
   return (
-    <>
-      <WelcomePage />
-    </>
+    <div className='w-screen h-screen'>
+      <LoginPage />
+    </div>
   )
 }
 
