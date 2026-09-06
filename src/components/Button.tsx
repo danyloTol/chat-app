@@ -8,7 +8,7 @@ type ButtonProps = {
     type?: "default" | "outline";
     padX?: number;
     padY?: number;
-    width?: number;
+    width?: number | string;
     fontSize?: number;
 }
 
