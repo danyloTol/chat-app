@@ -7,6 +7,7 @@ export default function SignupPage() {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
     const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
@@ -73,7 +74,14 @@ export default function SignupPage() {
                         onClick={() => setShowPassword(!showPassword)}
                         className='absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 hover:text-gray-700 select-none'
                     >
-                        {showPassword ? "Hide" : "Show"}
+                        {showPassword ? (
+                            <span className="material-symbols-outlined">
+                                visibility
+                            </span>
+                        ) : ( <span className="material-symbols-outlined">
+                                visibility_off
+                            </span>
+                        )}
                     </button>
                 </div>
                 <div className='relative w-full max-w-sm'>
@@ -83,7 +91,7 @@ export default function SignupPage() {
                             focus:border-[#399e47] focus:ring-2 focus:ring-[#399e47]/20
                             disabled:bg-gray-100 disabled:text-gray-400 disabled:cursor-not-allowed disabled:border-gray-200
                         "
-                        type={showPassword ? "text" : "password"}
+                        type={showConfirmPassword ? "text" : "password"}
                         name="ConfirmPassword"
                         disabled={false}
                         value={confirmPassword}
@@ -95,10 +103,17 @@ export default function SignupPage() {
                     />
                     <button
                         type='button'
-                        onClick={() => setShowPassword(!showPassword)}
+                        onClick={() => setShowConfirmPassword(!showConfirmPassword)}
                         className='absolute right-3 top-1/2 -translate-y-1/2 text-sm text-gray-500 hover:text-gray-700 select-none'
                     >
-                        {showPassword ? "Hide" : "Show"}
+                        {showConfirmPassword ? (
+                            <span className="material-symbols-outlined">
+                                visibility
+                            </span>
+                        ) : ( <span className="material-symbols-outlined">
+                                visibility_off
+                            </span>
+                        )}
                     </button>
                 </div>
                 
