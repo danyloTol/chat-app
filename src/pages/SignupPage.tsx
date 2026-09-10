@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import Button from '../components/Button'
+import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 export default function SignupPage() {
     const [email, setEmail] = useState("");
@@ -118,7 +119,7 @@ export default function SignupPage() {
                 </div>
                 
                 <Button text='Log In' bgColor='#399e47' hoverColor='#24692d' padY={6} fontSize={24} width="100%"/>
-                <p>Don't have an account yet? <a href="">Sign Up</a></p>
+                <p>Already have an account? <Link to="/login">Log In</Link></p>
             </div>
         </div>
     )
