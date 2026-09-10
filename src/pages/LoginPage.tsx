@@ -25,7 +25,7 @@ export default function LoginPage() {
     }
 
     return (
-        <div className="w-full h-full flex items-center justify-center">
+        <div className="w-screen h-screen flex items-center justify-center">
             <div className="w-[30vw] flex flex-col gap-5 items-center border-2 border-[#c2c2c2] rounded-3xl px-10 py-7">
                 <h1 className='text-5xl'>Login</h1>
                 <input
