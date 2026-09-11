@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { auth } from '../firebase';
+import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 
@@ -31,9 +33,28 @@ export default function SignupPage() {
         setConfirmPassword(value);
     }
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+
+        try {
+            if (password === confirmPassword) {
+                await createUserWithEmailAndPassword(auth, email, password);
+            } else {
+                throw new Error('passwords_dont_match')
+            }
+        } catch (err: any) {
+            if (err.message === 'passwords_dont_match') {
+                setError('Passwords must match');
+            } else {
+                setError(err.message);
+            }
+        }
+    };
+
     return (
         <div className="w-screen h-screen flex items-center justify-center">
-            <div className="w-[30vw] flex flex-col gap-5 items-center border-2 border-[#c2c2c2] rounded-3xl px-10 py-7">
+            <form onSubmit={handleSubmit} className="w-[30vw] flex flex-col gap-5 items-center border-2 border-[#c2c2c2] rounded-3xl px-10 py-7">
                 <h1 className='text-5xl'>Sign Up</h1>
                 <input
                     className="
@@ -117,10 +138,10 @@ export default function SignupPage() {
                         )}
                     </button>
                 </div>
-                
-                <Button text='Log In' bgColor='#399e47' hoverColor='#24692d' padY={6} fontSize={24} width="100%"/>
+                <p className='text-red-600'>{error}</p>
+                <Button text='Sign Up' btnType='submit' bgColor='#399e47' hoverColor='#24692d' padY={6} fontSize={24} width="100%"/>
                 <p>Already have an account? <Link to="/login">Log In</Link></p>
-            </div>
+            </form>
         </div>
     )
 }

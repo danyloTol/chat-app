@@ -10,14 +10,16 @@ type ButtonProps = {
     padY?: number;
     width?: number | string;
     fontSize?: number;
+    btnType?: 'button' | 'reset' | 'submit';
 }
 
-function Button({text, bgColor = "#FFFFFF", hoverColor, type = "default", padX = 0, padY = 0, width, fontSize = 16}: ButtonProps) {
+function Button({text, bgColor = "#FFFFFF", hoverColor, type = "default", padX = 0, padY = 0, width, fontSize = 16, btnType}: ButtonProps) {
     const [isHovered, setIsHovered] = useState(false)
     const isDefault = type === "default";
 
     return (
         <button 
+            type={btnType}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             className={`rounded-full px-[${padX}] py-[${padY}] cursor-pointer ${isDefault ? "text-white" : "bg-transparent trxt-black"} duration-300`}
