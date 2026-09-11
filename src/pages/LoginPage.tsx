@@ -91,7 +91,7 @@ export default function LoginPage() {
                         )}
                     </button>
                 </div>
-                
+                <p className='text-red-600'>{error}</p>
                 <Button btnType='submit' text='Log In' bgColor='#399e47' hoverColor='#24692d' padY={6} fontSize={24} width="100%"/>
                 <p>Don't have an account yet? <Link to="/signup">Sign Up</Link></p>
             </form>
