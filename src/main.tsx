@@ -1,31 +1,51 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { AuthProvider } from './hooks/AuthProvider';
+import ProtectedRoute from './hooks/ProtectedRoute';
+import PublicRoute from './hooks/PublicRoute';
 
 import WelcomePage from './pages/WelcomePage';
-import LoginPage from './pages/LoginPage'
+import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
+import ChatRoom from './pages/ChatRoom';
 
 import './index.css';
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <WelcomePage />,
+    element: <PublicRoute />,
+    children: [
+      {
+        path: "/",
+        element: <WelcomePage />,
+      },
+      {
+        path: "/login",
+        element: <LoginPage />,
+      },
+      {
+        path: "/signup",
+        element: <SignupPage />,
+      },
+    ],
   },
+
   {
-    path: "/login",
-    element: <LoginPage />,
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: "/main",
+        element: <ChatRoom />,
+      },
+    ],
   },
-  {
-    path: "/signup",
-    element: <SignupPage />,
-  }
-])
+]);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    {/* Підключаємо роутер до React */}
-    <RouterProvider router={router} />
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
   </React.StrictMode>
 );
