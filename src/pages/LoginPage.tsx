@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { auth } from '../firebase';
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 import Button from '../components/Button';
 
@@ -24,9 +26,20 @@ export default function LoginPage() {
         setPassword(value);
     }
 
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+
+        try {
+            await signInWithEmailAndPassword(auth, email, password);
+        } catch (err: any) {
+            setError(err.message)
+        }
+    }
+
     return (
         <div className="w-screen h-screen flex items-center justify-center">
-            <div className="w-[30vw] flex flex-col gap-5 items-center border-2 border-[#c2c2c2] rounded-3xl px-10 py-7">
+            <form onSubmit={handleSubmit} className="w-[30vw] flex flex-col gap-5 items-center border-2 border-[#c2c2c2] rounded-3xl px-10 py-7">
                 <h1 className='text-5xl'>Login</h1>
                 <input
                     className="
@@ -79,9 +92,9 @@ export default function LoginPage() {
                     </button>
                 </div>
                 
-                <Button text='Log In' bgColor='#399e47' hoverColor='#24692d' padY={6} fontSize={24} width="100%"/>
+                <Button btnType='submit' text='Log In' bgColor='#399e47' hoverColor='#24692d' padY={6} fontSize={24} width="100%"/>
                 <p>Don't have an account yet? <Link to="/signup">Sign Up</Link></p>
-            </div>
+            </form>
         </div>
     )
 }
