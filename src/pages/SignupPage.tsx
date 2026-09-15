@@ -15,12 +15,7 @@ export default function SignupPage() {
     const handleChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
         const value = e.target.value;
         setEmail(value);
-
-        if (value && !value.includes("@")) {
-            setError("Email must contain the '@' symbol")
-        } else {
-            setError("")
-        }
+        setError("");
     }
 
     const handleChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,6 +41,16 @@ export default function SignupPage() {
         } catch (err: any) {
             if (err.message === 'passwords_dont_match') {
                 setError('Passwords must match');
+            } else if (err.message === 'Firebase: Error (auth/email-already-in-use).') {
+                setError('This email is already in use');
+            } else if (err.message === 'Firebase: Password should be at least 6 characters (auth/weak-password).') {
+                setError('Password must contain at least 6 characters');
+            } else if (err.message === 'Firebase: Error (auth/operation-not-allowed).') {
+                setError('Registration is currently unavailable. Please try again later');
+            } else if (err.message === 'Firebase: Error (auth/too-many-requests).') {
+                setError('Too many requests. Please try again later')
+            } else if (err.message === 'Firebase: Error (auth/network-request-failed).') {
+                setError('Network error. Check your internet connection')
             } else {
                 setError(err.message);
             }

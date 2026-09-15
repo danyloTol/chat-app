@@ -33,7 +33,17 @@ export default function LoginPage() {
         try {
             await signInWithEmailAndPassword(auth, email, password);
         } catch (err: any) {
-            setError(err.message)
+            if (err.message === 'Firebase: Error (auth/invalid-credential).') {
+                setError('Invalid email or password. Try again');
+            } else if (err.message === 'Firebase: Error (auth/user-disabled).') {
+                setError('This account was banned by admin')
+            } else if (err.message === 'Firebase: Error (auth/too-many-requests).') {
+                setError('Too many requests. Please try again later')
+            } else if (err.message === 'Firebase: Error (auth/network-request-failed).') {
+                setError('Network error. Check your internet connection')
+            } else {
+                setError(err.message);
+            }
         }
     }
 
